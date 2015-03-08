@@ -1,0 +1,71 @@
+# -*- coding: utf-8 -*-
+import codecs
+import os
+def Noun_Analysis(inpfile):
+	fp =  codecs.open("morphout",'r','utf-8')
+	line = fp.readline()
+	while line != '':
+		word_analysis = line.strip()
+		#print word_analysis.decode('utf-8')
+		word_segments = word_analysis.split(' = ')
+		#for word in word_segments:
+		#	print word.decode('utf-8')
+		suffixes = word_segments[1].split('+')
+		#print suffixes
+		fp1=open("suffixes",'a')
+		for suffix in suffixes:
+			fp1.write(suffix.encode('utf-8')+" "+"-")
+			fp1.write("\n")
+		fp1.write("---"+" "+"-")
+		fp1.write("\n")	
+		fp1.close()	
+		line = fp.readline()
+	return
+Noun_Analysis("morphout")
+os.system(" timbl -f suffix.train -t suffixes.test ")		
+'''case = ''
+grammatical_relation = ''
+semantic_role = ''
+gender = ''
+for part in suffix[1:]:
+	#print part
+	# Number Marker
+	if part == u'മാർ' or part == u'കൾ':
+		print "plural"
+	#elif suffix[1] == u'കൾ':
+	#	print "Plural"
+	else:
+		print "singlular"
+# Case Markers
+	if part == u'എ':
+		case = 'ACC'
+		grammatical_relation = 'Object'
+		semantic_role = 'Patient'
+	elif part == u'ക്ക്' or part == u'ഇന്':
+		case = 'DAT'
+		grammatical_relation = 'Subject&Object'
+		semantic_role = 'Experiencer'
+	elif part == u'ഓട്ട്':
+		case =  'SOC'
+		grammatical_relation = 'Object'
+		semantic_role = 'Recipient'
+	elif part == u'ആല്‍':
+		case = 'INST'
+	elif part == u'ഇല്‍' or part == u'അത്ത്':
+		case = 'LOC'
+	else:
+		case= 'Nominative'
+		grammatical_relation = "subject"
+		semantic_role = "Agent,Experiencer"
+# Gender marker
+	if part == u'അൻ':
+		gender = "Masculine"
+	elif part == u'ഇ':
+		gender = 'Feminine'
+	else:
+		gender = 'Neutral'
+# Post positions handling
+print "case", case
+print "relation", grammatical_relation
+print "semantic_role", semantic_role
+print "gender", gender'''
