@@ -17,7 +17,7 @@ def Noun_Analysis(inpfile):
 			fp1.write(suffix.encode('utf-8')+" "+"-")
 			fp1.write("\n")
 		fp1.write("---"+" "+"-")
-		fp1.write("\n")	
+		#fp1.write("\n")	
 		fp1.close()	
 		line = fp.readline()
 	return
